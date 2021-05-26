@@ -3,7 +3,7 @@ const redis = require('redis');
 // Create a client and connect to Redis.
 const client = redis.createClient({
   host: 'localhost',
-  port: 6379,
+  port: 7070,
   // password: 'password',
 });
 

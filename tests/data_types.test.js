@@ -42,6 +42,7 @@ test(`${testSuiteName}: Test Redis list`, async () => {
 
   const value = await client.lrangeAsync(testKeyName, 0, 3);
 
+  console.log(value);
   expect(typeof (value)).toBe('object');
   expect(Array.isArray(value)).toBe(true);
   expect(value).toEqual(['one', 'two', 'three']);
