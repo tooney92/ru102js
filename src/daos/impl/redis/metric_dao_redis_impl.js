@@ -58,8 +58,8 @@ const insertMetric = async (siteId, metricValue, metricName, timestamp) => {
   const metricKey = keyGenerator.getDayMetricKey(siteId, metricName, timestamp);
   const minuteOfDay = timeUtils.getMinuteOfDay(timestamp);
 
-  // START Challenge #2
-  // END Challenge #2
+  let info = [metricKey, minuteOfDay, `${metricValue}:${minuteOfDay}`]
+  await client.zaddAsync(info)
 };
 /* eslint-enable */
 
@@ -112,7 +112,7 @@ const insert = async (meterReading) => {
     insertMetric(meterReading.siteId, meterReading.whUsed, 'whUsed', meterReading.dateTime),
     insertMetric(meterReading.siteId, meterReading.tempC, 'tempC', meterReading.dateTime),
   ]);
-};
+};''
 
 /* eslint-disable no-unused-vars */
 /**

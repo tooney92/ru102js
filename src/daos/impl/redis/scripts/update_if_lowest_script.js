@@ -28,6 +28,8 @@ const load = async () => {
     sha = await client.scriptAsync('load', getSource());
   }
 
+  console.log(sha);
+
   return sha;
 };
 

@@ -141,8 +141,10 @@ const findAll = async () => {
  * @returns {Promise} - a Promise, resolving to an array of site objects.
  */
 const findByGeo = async (lat, lng, radius, radiusUnit) => {
+  console.log("hello");
   const client = redis.getClient();
 
+  // console.log("in here \n \n");
   const siteIds = await client.georadiusAsync(
     keyGenerator.getSiteGeoKey(),
     lng,

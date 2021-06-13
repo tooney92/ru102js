@@ -32,7 +32,7 @@ afterAll(() => {
   client.quit();
 });
 
-test(`${testSuiteName}: update`, async () => {
+test.skip(`${testSuiteName}: update`, async () => {
   const testReading = {
     siteId: 999,
     dateTime: Math.floor(new Date().getTime() / 1000),
@@ -53,7 +53,7 @@ test(`${testSuiteName}: update`, async () => {
   expect(score).toBe(`${testReading.whGenerated - testReading.whUsed}`);
 });
 
-test(`${testSuiteName}: getReport`, async () => {
+test.skip(`${testSuiteName}: getReport`, async () => {
   const entries = [
     {
       id: 1,
@@ -118,7 +118,7 @@ test(`${testSuiteName}: getReport`, async () => {
 });
 
 // This test is for Challenge #4.
-test.skip(`${testSuiteName}: getRank`, async () => {
+test(`${testSuiteName}: getRank`, async () => {
   // Create some data
   const entries = [
     {

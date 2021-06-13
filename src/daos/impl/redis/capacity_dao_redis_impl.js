@@ -72,6 +72,7 @@ const getRank = async (siteId) => {
     `${siteId}`,
   );
 
+  console.log(result);
   return result;
   // END Challenge #4
 };

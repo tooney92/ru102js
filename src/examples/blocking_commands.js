@@ -6,7 +6,6 @@ bluebird.promisifyAll(redis);
 
 // Redis key that the producer and consumer will use to share data.
 const key = 'blockingdemo';
-
 const startConsumer = async () => {
   let retryCount = 0;
   let done = false;

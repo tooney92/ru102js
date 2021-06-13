@@ -44,14 +44,15 @@ const remap = (siteHash) => {
  * @private
  */
 const flatten = (site) => {
-  const flattenedSite = { ...site };
 
+  const flattenedSite = { ...site };
+  
   if (flattenedSite.hasOwnProperty('coordinate')) {
     flattenedSite.lat = flattenedSite.coordinate.lat;
     flattenedSite.lng = flattenedSite.coordinate.lng;
     delete flattenedSite.coordinate;
   }
-
+  
   return flattenedSite;
 };
 
@@ -66,6 +67,7 @@ const insert = async (site) => {
   const client = redis.getClient();
 
   const siteHashKey = keyGenerator.getSiteHashKey(site.id);
+
 
   await client.hmsetAsync(siteHashKey, flatten(site));
   await client.saddAsync(keyGenerator.getSiteIDsKey(), siteHashKey);
@@ -82,9 +84,8 @@ const insert = async (site) => {
 const findById = async (id) => {
   const client = redis.getClient();
   const siteKey = keyGenerator.getSiteHashKey(id);
-
+  
   const siteHash = await client.hgetallAsync(siteKey);
-
   return (siteHash === null ? siteHash : remap(siteHash));
 };
 
@@ -96,7 +97,20 @@ const findById = async (id) => {
  */
 const findAll = async () => {
   // START CHALLENGE #1
-  return [];
+  const client = redis.getClient();
+  const siteIds = await client.smembersAsync(keyGenerator.getSiteIDsKey());
+  const sites = []
+  for (let siteID = 0; siteID < siteIds.length; siteID++) {
+    const site = siteIds[siteID];
+    const siteData = await client.hgetallAsync(site)
+    // console.log(siteData);
+    if (siteData) {
+      sites.push(remap(siteData))
+    }
+    
+  }
+
+  return sites;
   // END CHALLENGE #1
 };
 /* eslint-enable */

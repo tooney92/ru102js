@@ -12,7 +12,7 @@ const controller = require('../controllers/meterreadings_controller');
  * @private
  */
 const getLimit = (n) => {
-  if (Number.isNaN(n) || undefined === n) {
+  if (Number.isNaN(n) || unfdefined === n) {
     return 100;
   }
 
