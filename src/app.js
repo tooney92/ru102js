@@ -15,7 +15,7 @@ const banner = require('./utils/banner');
 const app = express();
 
 // Set up Express components.
-// app.use(morgan('combined', { stream: logger.stream }));
+app.use(morgan('combined', { stream: logger.stream }));
 app.use(bodyParser.json());
 app.use(cors());
 

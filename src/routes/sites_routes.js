@@ -46,13 +46,7 @@ router.get(
   ],
   async (req, res, next) => {
     try {
-      const { lat, lng, radius, radiusUnit, onlyExcessCapacity } = {
-        lat: 37.8387892,
-        lng: -122.271111,
-        radius: 10,
-        radiusUnit: "KM",
-      };
-
+      const { lat, lng, radius, radiusUnit, onlyExcessCapacity } = req.query;
       const sites = lat
         ? await controller.getSitesNearby(
             lat,
